@@ -36,14 +36,15 @@ class GameController {
       this.deadMsg.style.display = ''
       clearInterval(this.interval as NodeJS.Timer)
     }
+    // speed 150
+    this.interval = setTimeout(this.update.bind(this), 150 - (this.scorePanel.level) * 30)
   }
 
   init () {
     console.log('start')
     // 键盘时间
     document.addEventListener('keydown', this.keydownHandler.bind(this))
-    // speed 150
-    this.interval = setInterval(this.update.bind(this), 150 - (this.scorePanel.level) * 30)
+    this.update()
   }
 
   keydownHandler (event: KeyboardEvent) {
