@@ -38,6 +38,10 @@ const config = {
       '@': '/src'
     },
     extensions: ['.ts', '.js']
+  },
+  devServer: {
+    port: 8888
+    // host: '0.0.0.0'
   }
 }
 module.exports = config
