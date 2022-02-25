@@ -30,16 +30,17 @@ module.exports = {
   },
   devtool: process.env.NODE_ENV === 'production' ? false : 'inline-source-map',
   devServer: {
+    allowedHosts: 'all',
     client: {
       progress: true
     },
     compress: false, // 不启用压缩
-    host: '0.0.0.0',
+    // host: '0.0.0.0',
     port: 8089
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src/index.html')
+      template: path.resolve(__dirname, 'public/index.html')
     })
   ]
 }
