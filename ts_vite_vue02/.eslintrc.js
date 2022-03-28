@@ -5,14 +5,16 @@ module.exports = {
     node: true,
     'vue/setup-compiler-macros': true
   },
+  root: true,
   extends: [
+    './.eslintrc-auto-import.json',
     'plugin:vue/vue3-essential',
     'standard',
     'plugin:@typescript-eslint/eslint-recommended'
-    // 'plugin:@typescript-eslint/recommended'
   ],
+  // parser: 'vue-eslint-parser',
   parserOptions: {
-    ecmaVersion: 12,
+    ecmaVersion: 'latest',
     parser: '@typescript-eslint/parser',
     sourceType: 'module'
   },
@@ -20,5 +22,10 @@ module.exports = {
     'vue',
     '@typescript-eslint'
   ],
-  rules: {}
+  rules: {
+    'no-unused-vars': 'warn',
+    'vue/multi-word-component-names': 'off',
+    'prefer-const': 0,
+    'no-use-before-define': 0
+  }
 }
