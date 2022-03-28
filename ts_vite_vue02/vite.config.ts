@@ -10,7 +10,7 @@ export default ({ mode, command }) => {
     plugins: createPlugins(env, command),
 
     server: {
-      // host: '0.0.0.0',
+      host: '127.0.0.1',
       port: 9999,
       // open: true,
       proxy: createProxy(env, command)

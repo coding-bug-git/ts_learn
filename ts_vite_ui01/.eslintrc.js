@@ -5,7 +5,6 @@ module.exports = {
     node: true,
     'vue/setup-compiler-macros': true
   },
-  root: true,
   extends: [
     './.eslintrc-auto-import.json',
     'plugin:vue/vue3-essential',
@@ -28,6 +27,6 @@ module.exports = {
     'prefer-const': 0,
     'no-use-before-define': 0,
     indent: 0,
-    '@typescript-eslint/indent': ['error', 2] // 2 spaces === 1 tab
+    '@typescript-eslint/indent': ['error', 2]
   }
 }
