@@ -6,3 +6,9 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+
+declare type Reverse<T> = (state: any, action: any) => T
+
+declare function returnResultType<T> (arg: Reverse<T>): T {
+  return {} as T
+}

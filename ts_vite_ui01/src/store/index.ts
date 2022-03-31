@@ -1,5 +1,7 @@
 import { createStore } from 'vuex'
 
+import setting from './setting'
+
 const store = createStore({
   state () {
     return {
@@ -10,6 +12,9 @@ const store = createStore({
     increment (state: any) {
       state.count++
     }
+  },
+  modules: {
+    setting
   }
 })
 export default store

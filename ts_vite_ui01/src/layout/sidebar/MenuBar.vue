@@ -1,8 +1,11 @@
 <template>
   <el-menu
-    default-active="2"
-    class="el-menu-vertical-demo"
+    default-active="1-1"
+    class="el-menu"
     :collapse="isCollapse"
+    :text-color="styles.menuColor"
+    :active-text-color="styles.menuColorActive"
+    :collapse-transition="false"
     @open="handleOpen"
     @close="handleClose"
   >
@@ -17,22 +20,15 @@
         <template #title>
           <span>Group One</span>
         </template>
-        <el-menu-item index="1-1">item one</el-menu-item>
-        <el-menu-item index="1-2">item two</el-menu-item>
+        <el-menu-item v-for="i in 11" :key="i" :index="`1-${i}`">item {{ i }}</el-menu-item>
       </el-menu-item-group>
       <el-menu-item-group title="Group Two">
         <el-menu-item index="1-3">item three</el-menu-item>
       </el-menu-item-group>
-      <el-sub-menu index="1-4">
-        <template #title>
-          <span>item four</span>
-        </template>
-        <el-menu-item index="1-4-1">item one</el-menu-item>
-      </el-sub-menu>
     </el-sub-menu>
     <el-menu-item index="2">
       <el-icon>
-        <icon-menu />
+        <Menu />
       </el-icon>
       <template #title>Navigator Two</template>
     </el-menu-item>
@@ -52,7 +48,15 @@
 </template>
 
 <script lang="ts" setup>
-const isCollapse = ref(false)
+import styles from '@/assets/styles/variables.module.scss'
+import { SettingState } from '@/store/setting'
+import { useStore } from 'vuex'
+
+// console.log(styles.menuColor)
+const store = useStore()
+const isCollapse = computed(() => {
+  return (store.state.setting as SettingState).sidebar.isCollapse
+})
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
@@ -61,9 +65,19 @@ const handleClose = (key: string, keyPath: string[]) => {
 }
 </script>
 
-<style>
-.el-menu-vertical-demo:not(.el-menu--collapse) {
+<style lang="scss">
+/* .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 400px;
+} */
+@import "@/assets/styles/variables.module.scss";
+.el-menu {
+  background-color: $base-menu-background;
+  // background-color: white;
+  border: none;
+}
+.el-menu-item:hover,
+.el-sub-menu__title:hover {
+  background-color: $base-sub-menu-hover;
 }
 </style>

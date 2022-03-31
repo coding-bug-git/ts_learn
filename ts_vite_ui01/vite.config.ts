@@ -29,6 +29,14 @@ export default ({ mode, command }) => {
         resolvers: [elementPlusResolver]
       })
     ],
+    css: {
+      preprocessorOptions: {
+        // import global variables
+        scss: {
+          // additionalData: '@import "./src/assets/styles/variables.module.scss";'
+        }
+      }
+    },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src')
