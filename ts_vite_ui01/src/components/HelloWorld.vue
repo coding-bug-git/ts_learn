@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useStore } from 'vuex'
+import { useStore } from '@/store'
 
 defineProps<{ msg: string }>()
 const store = useStore()

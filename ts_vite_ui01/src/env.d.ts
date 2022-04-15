@@ -6,9 +6,20 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
-
-declare type Reverse<T> = (state: any, action: any) => T
-
-declare function returnResultType<T> (arg: Reverse<T>): T {
-  return {} as T
-}
+declare type Styles = Readonly<{
+  menuColor: string
+  menuLightColor: string
+  menuColorActive: string
+  menuBackground: string
+  menuLightBackground: string
+  subMenuBackground: string
+  subMenuHover: string
+  sideBarWidth: string
+  logoTitleColor: string
+  logoLightTitleColor: string
+  primaryColor: string
+  successColor: string
+  dangerColor: string
+  infoColor: string
+  warningColor: string
+}>

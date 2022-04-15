@@ -12,8 +12,9 @@ export default ({ mode, command }) => {
   const elementPlusResolver = ElementPlusResolver()
   return defineConfig({
     plugins: [
-      vue(),
+      vue({ reactivityTransform: true }),
       ElementPlus(),
+
       AutoImport({
         imports: [
           'vue', 'vue-router'

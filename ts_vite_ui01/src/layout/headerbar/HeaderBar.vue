@@ -2,8 +2,8 @@
   <el-header>
     <div class="collapseBtn" @click="toggleSidebar">
       <el-icon>
-        <fold v-if="!isCollapse" />
-        <expand v-if="isCollapse" />
+        <fold v-if="!isCollapse"/>
+        <expand v-if="isCollapse"/>
       </el-icon>
     </div>
 
@@ -12,28 +12,29 @@
 </template>
 
 <script lang="ts" setup>
-import { SettingState } from '@/store/setting'
-import { useStore } from 'vuex'
+import { useStore } from '@/store'
 
 const store = useStore()
 
 const isCollapse = computed<boolean>(() => {
-  return (store.state.setting as SettingState).sidebar.isCollapse
+  return store.state.setting.sidebar.isCollapse
 })
 
 const toggleSidebar = () => {
-  store.commit('setting/SET_SIDEBAR_COLLAPSE', !isCollapse.value)
+  store.commit('setting/TOGGLE_SIDEBAR', !isCollapse.value)
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .el-header {
   display: flex;
   flex-direction: row;
   align-items: center;
+
   .collapseBtn {
     padding: 0 15px;
     font-size: 20px;
+
     &:hover {
       cursor: pointer;
     }

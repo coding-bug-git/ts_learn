@@ -1,28 +1,39 @@
 <template>
-  <el-aside :width="width">
-    <logo-bar />
+  <el-aside
+      :class="asideClass"
+      :width="asideWide"
+  >
+
+    <logo-bar/>
     <el-scrollbar>
-      <MenuBar />
+      <MenuBar/>
     </el-scrollbar>
   </el-aside>
 </template>
 
 <script setup lang="ts">
-import { SettingState } from '@/store/setting'
-import { useStore } from 'vuex'
+
+import { useStore } from '@/store'
 import LogoBar from './LogoBar.vue'
 import MenuBar from './MenuBar.vue'
 
 const store = useStore()
 const isCollapse = computed<boolean>(() => {
-  return (store.state.setting as SettingState).sidebar.isCollapse
+  return store.state.setting.sidebar.isCollapse
 })
-const width = computed(() => {
+
+const asideWide = computed(() => {
   return !isCollapse.value ? '200px' : '64px'
 })
+const asideClass = computed(() => {
+  return !isCollapse.value ? 'sidebar-collapse' : 'sidebar-collapse-hide'
+})
+
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@import "@/assets/styles/variables.module.scss";
+
 .el-scrollbar {
   height: calc(100vh - 50px);
 }
@@ -32,6 +43,14 @@ const width = computed(() => {
 }
 
 .el-aside {
-  transition: width 0.3s;
+  background-color: $base-menu-background;
+  text-align: center;
+  line-height: 200px;
+  overflow: hidden;
+  transition: all 0.3s;
+
+  :deep(.el-menu) {
+    background-color: $base-menu-background;
+  }
 }
 </style>

@@ -21,6 +21,9 @@ module.exports = {
     'vue',
     '@typescript-eslint'
   ],
+  globals: {
+    Styles: true
+  },
   rules: {
     'no-unused-vars': 'warn',
     'vue/multi-word-component-names': 'off',
