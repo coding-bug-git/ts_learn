@@ -3,6 +3,13 @@ import ScorePanel from '@/modules/ScorePanel'
 import { Snake } from '@/modules/Snake'
 import { Vector2 } from '@/modules/Vector2'
 
+type Keymap = {
+  w: Vector2
+  s: Vector2
+  a: Vector2
+  d: Vector2
+}
+
 class GameController {
   deadMsg = document.getElementById('deadMsg')!
   interval: NodeJS.Timer | undefined
@@ -49,7 +56,7 @@ class GameController {
 
   keydownHandler (event: KeyboardEvent) {
     if (Object.keys(this.keyMap).indexOf(event.key) !== -1) {
-      this.snake.nextDirection = this.keyMap[event.key as keyof typeof this.keyMap]
+      this.snake.nextDirection = this.keyMap[event.key as keyof Keymap]
     }
   }
 

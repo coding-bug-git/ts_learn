@@ -1,6 +1,6 @@
 <template>
   <div class="logo">
-    <img src="@/assets/logo.png" />
+    <img src="@/assets/logo.png"/>
     <h2 v-if="!isCollapse" class="title">Vue Admin</h2>
   </div>
 </template>
@@ -19,14 +19,17 @@ const isCollapse = computed<boolean>(() => {
 .logo {
   display: flex;
   align-items: center;
-  padding: 14px;
+  justify-content: center;
+
   height: 50px;
   overflow: hidden;
   white-space: nowrap;
+
   img {
     height: 24px;
-    margin: 0 8px;
+    margin: 0 8px
   }
+
   .title {
     font-size: 20px;
     color: white;

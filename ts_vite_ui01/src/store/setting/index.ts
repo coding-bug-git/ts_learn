@@ -5,7 +5,8 @@ const state = () => {
   return {
     sidebar: {
       isCollapse: false,
-      isHide: false
+      isHide: false,
+      transition: false
     },
     device: 'desktop'
   }

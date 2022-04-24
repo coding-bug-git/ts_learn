@@ -81,5 +81,14 @@ const handleClose = (key: string, keyPath: string[]) => {
   :deep(.el-sub-menu__title:hover) {
     background-color: $base-sub-menu-hover;
   }
+
+  :deep(.el-sub-menu__title) {
+    padding: 0 15px !important;
+  }
+
+  :deep(.el-menu-tooltip__trigger) {
+    padding: 0 15px !important;
+  }
+
 }
 </style>

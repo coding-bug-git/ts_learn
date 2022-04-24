@@ -1,6 +1,5 @@
 <template>
   <el-aside
-      :class="asideClass"
       :width="asideWide"
   >
 
@@ -23,11 +22,11 @@ const isCollapse = computed<boolean>(() => {
 })
 
 const asideWide = computed(() => {
-  return !isCollapse.value ? '200px' : '64px'
+  return !isCollapse.value ? '200px' : '54px'
 })
-const asideClass = computed(() => {
-  return !isCollapse.value ? 'sidebar-collapse' : 'sidebar-collapse-hide'
-})
+// const asideClass = computed(() => {
+//   return !isCollapse.value ? 'sidebar-collapse' : 'sidebar-collapse-hide'
+// })
 
 </script>
 
@@ -47,7 +46,7 @@ const asideClass = computed(() => {
   text-align: center;
   line-height: 200px;
   overflow: hidden;
-  transition: all 0.3s;
+  transition: width 0.3s;
 
   :deep(.el-menu) {
     background-color: $base-menu-background;

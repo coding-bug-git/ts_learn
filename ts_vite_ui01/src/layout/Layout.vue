@@ -1,12 +1,16 @@
 <template>
   <div class="common-layout">
     <el-container>
-      <side-bar v-if="device==='desktop' || !isCollapse"/>
+      <side-bar :class="sideClass"/>
       <el-container direction="vertical">
         <!-- mask -->
         <div class="drawer-bg" v-show="maskshow" @click="maskClick"/>
         <header-bar/>
-        <el-main>Main</el-main>
+        <el-main>
+
+          <div :class="sideClass" style="width: 100px;height: 100px;border: 1px red solid" @click="trans"></div>
+
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -23,16 +27,20 @@ const store = useStore()
 const { width, height } = useWindowSize()
 
 const isCollapse = computed<boolean>(() => store.state.setting.sidebar.isCollapse)
+const transition = computed<boolean>(() => store.state.setting.sidebar.transition)
 const device = computed<string>(() => store.state.setting.device)
 const WIDTH = 992
 
 watchEffect(() => {
+  if (device.value === 'mobile' && !isCollapse.value) {
+    store.dispatch('setting/sidebarTransition', { transition: false })
+  }
+
   if (width.value - 1 < WIDTH) {
     store.dispatch('setting/toggleDevice', 'mobile')
-    store.dispatch('setting/toggleSidebar', true)
+    store.dispatch('setting/sidebarTransition', { transition: true })
   } else {
     store.dispatch('setting/toggleDevice', 'desktop')
-    store.dispatch('setting/toggleSidebar', false)
   }
 })
 const maskshow = computed(() => {
@@ -41,10 +49,32 @@ const maskshow = computed(() => {
 const maskClick = () => {
   store.dispatch('setting/toggleSidebar', !isCollapse.value)
 }
+
+const sideClass = reactive({
+  sideHide: isCollapse.value,
+  sideShow: !isCollapse.value,
+  transition: transition.value,
+  mobile: device.value === 'mobile'
+})
+const trans = () => {
+  sideClass.sideHide = !sideClass.sideHide
+  sideClass.sideShow = !sideClass.sideShow
+}
+
 </script>
 
 <style scoped lang="scss">
 @import "@/assets/styles/variables.module.scss";
+
+.sideHide {
+  transform: translate3d(-200px, 0, 0);
+  transition: all 0.3s;
+}
+
+.sideShow {
+  transform: translate3d(0, 0, 0);
+  transition: all 0.3s;
+}
 
 .el-header {
   background-color: #b3c0d1;
@@ -60,6 +90,7 @@ const maskClick = () => {
   color: #333;
   text-align: center;
   line-height: 160px;
+
 }
 
 .common-layout > .el-container {
